@@ -1,0 +1,49 @@
+# Add Any Github workflows here. The current one is a linter workflow which checks for code quality, and raises pep issues
+# This will fail if the lint returns a score of less than 9.0
+
+name: CI
+on:
+  push:
+    branches: "master"
+  pull_request:
+    branches: "*"
+  workflow_dispatch:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v1
+        with:
+          python-version: "3.8"
+
+      - name: Setup Invoke
+        run: pip install invoke
+
+      - name: Install Requirements
+        run: inv build
+
+      - name: Checkout EA helper functions repo
+        uses: actions/checkout@v2
+        with:
+          repository: energyaspects/helper_functions
+          token: ${{secrets.CI_PA_TOKEN}}
+          path: helper_functions
+
+      - name: Install EA helper functions
+        run: pip install helper_functions/
+
+      - name: Pylint Project File
+        run: inv lint
+      
+      - name: Install package
+        run: python setup.py install
+
+      - name: Run sample ETL
+        run: {{insert command here}}} --environment tests
+        env:
+          SHOOJU_USER: '${{ secrets.SHOOJU_USER }}'
+          SHOOJU_SERVER: '${{ secrets.SHOOJU_SERVER }}'
+          SHOOJU_KEY: '${{ secrets.SHOOJU_KEY }}'

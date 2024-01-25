@@ -1,0 +1,24 @@
+### This is your cloud-build template. Please replace any {__name__} with the appropriate Docker tag you want to give to
+### Your Docker image
+steps:
+  # Get the github pem
+  - name: gcr.io/cloud-builders/gcloud
+    entrypoint: 'bash'
+    args: [ '-c', 'gcloud secrets versions access latest --secret=github-access > /root/.ssh/id_github' ]
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+
+  # Build the docker image
+  - name: 'docker'
+    entrypoint: 'sh'
+    args: [
+        '-c',
+        'docker build --build-arg SSH_PRIVATE_KEY="$(cat /root/.ssh/id_github)" -f Dockerfile -t gcr.io/$PROJECT_ID/{__name__} .'
+    ]
+    volumes:
+      - name: 'ssh'
+        path: /root/.ssh
+
+images: ['gcr.io/$PROJECT_ID/{__name__}']
+timeout: '1200s'

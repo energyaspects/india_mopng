@@ -1,0 +1,9 @@
+# EDIT THIS WITH THE PACKAGES YOU HAVE INSTALLED!
+# DO NOT INSTALL Req.txt blindly :)
+pandas
+numpy
+shooju
+pylint
+black
+invoke
+python-dotenv
