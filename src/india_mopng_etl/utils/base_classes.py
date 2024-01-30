@@ -1,4 +1,4 @@
-from __name__.utils import *
+from india_mopng_etl.utils import *
 
 
 class BaseVariables:

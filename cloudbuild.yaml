@@ -1,4 +1,4 @@
-### This is your cloud-build template. Please replace any {__name__} with the appropriate Docker tag you want to give to
+### This is your cloud-build template. Please replace any {india_mopng_etl} with the appropriate Docker tag you want to give to
 ### Your Docker image
 steps:
   # Get the github pem
@@ -14,11 +14,11 @@ steps:
     entrypoint: 'sh'
     args: [
         '-c',
-        'docker build --build-arg SSH_PRIVATE_KEY="$(cat /root/.ssh/id_github)" -f Dockerfile -t gcr.io/$PROJECT_ID/{__name__} .'
+        'docker build --build-arg SSH_PRIVATE_KEY="$(cat /root/.ssh/id_github)" -f Dockerfile -t gcr.io/$PROJECT_ID/{india_mopng_etl} .'
     ]
     volumes:
       - name: 'ssh'
         path: /root/.ssh
 
-images: ['gcr.io/$PROJECT_ID/{__name__}']
+images: ['gcr.io/$PROJECT_ID/{india_mopng_etl}']
 timeout: '1200s'

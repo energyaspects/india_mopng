@@ -28,9 +28,9 @@ setuptools.setup(
     # if you are using jsons or csvs for your code then you need to include this to make sure that the package includes these data when it installs
     entry_points={
         'console_scripts': [
-            "name_of_task = __name__.main:main",
+            "name_of_task = india_mopng_etl.main:main",
             # these are the commands that can be ran through bash. Make sure you specify the correct folder under the
-            # src path that includes the python script that you will run. In this instance it would be __name__.main: main
+            # src path that includes the python script that you will run. In this instance it would be india_mopng_etl.main: main
         ],
     },
 

@@ -1,8 +1,8 @@
 import pandas as pd
 
 from helper_functions_ea import Logger
-from __name__.metadata import metadata
-from __name__.utils.base_classes import DataExtractor
+from india_mopng_etl.metadata import metadata
+from india_mopng_etl.utils.base_classes import DataExtractor
 
 
 class __Class_Name__(DataExtractor):  # make sure you rename the class to your preference

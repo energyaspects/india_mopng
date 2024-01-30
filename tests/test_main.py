@@ -1,8 +1,8 @@
 import argparse
 import pytest
 import pandas as pd
-from __name__.main import __Class_Name__
-from __name__ import main
+from india_mopng_etl.main import __Class_Name__
+from india_mopng_etl import main
 
 dummy_data = pd.DataFrame()
 
