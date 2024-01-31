@@ -34,12 +34,12 @@ class DataExtractor:
         try:
             self.extract()
         except Exception as err:
-            raise RuntimeError(f"Scraper failed at extraction. Error was {err}") from err
+            raise RuntimeError(f"Scrapper failed at extraction. Error was {err}") from err
         try:
             self.transform()
         except Exception as err:
-            raise RuntimeError(f"Scraper failed at dataframe transformation. Error was {err}") from err
+            raise RuntimeError(f"Scrapper failed at dataframe transformation. Error was {err}") from err
         # try:
         #     self.load()
         # except Exception as err:
-        #     raise RuntimeError(f"Scraper failed at upload. Error was {err}") from err
+        #     raise RuntimeError(f"Scrapper failed at upload. Error was {err}") from err

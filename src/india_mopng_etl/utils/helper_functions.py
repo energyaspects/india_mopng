@@ -67,7 +67,6 @@ def get_pdf_info(pdf_path, dataframes):
             if crude_target_table.shape[1] == 11:
                 # Select only the first and fifth columns for every rows
                 crude_target_table = crude_target_table.iloc[:, [0, 4]]
-                # dataframes['crude_dataframes'].append(crude_target_table)
                 if len(crude_target_table) >= len(dataframes['crude_dataframes']):
                     for index, key in enumerate(dataframes['crude_dataframes']):
                         dataframes['crude_dataframes'][key].append(crude_target_table.iloc[[index]])
@@ -87,7 +86,6 @@ def get_pdf_info(pdf_path, dataframes):
             if petroleum_target_table.shape[1] == 11:
                 # Select only the first and fifth columns for every rows
                 petroleum_target_table = petroleum_target_table.iloc[:, [0, 4]]
-                # dataframes['petroleum_dataframes'].append(petroleum_target_table)
                 if len(petroleum_target_table) >= len(dataframes['petroleum_dataframes']):
                     for index, key in enumerate(dataframes['petroleum_dataframes']):
                         dataframes['petroleum_dataframes'][key].append(petroleum_target_table.iloc[[index]])
