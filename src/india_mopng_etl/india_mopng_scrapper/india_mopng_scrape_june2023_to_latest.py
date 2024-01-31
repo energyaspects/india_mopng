@@ -9,7 +9,7 @@ from india_mopng_etl.utils.base_classes import DataExtractor
 from india_mopng_etl.utils.helper_functions import get_pdf_lists, get_pdf_info
 
 
-class June2023ToLatest(DataExtractor):  # make sure you rename the class to your preference
+class Scrapper(DataExtractor):  # make sure you rename the class to your preference
     """Make sure you implement all the methods required for your ETL"""
 
     logger = Logger("India Mopng Scrape => ").logger
