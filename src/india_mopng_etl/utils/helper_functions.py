@@ -27,10 +27,11 @@ def get_pdf_lists(url):
                 list_of_pdf.append(link.get('href'))
     return list_of_pdf
     # return ['https://mopng.gov.in/files/petroleumStatistics/monthlyProduction/mprsep2023.pdf']
+    # return ['https://mopng.gov.in/files/petroleumStatistics/monthlyProduction/MPR-april22.pdf']
 
 
 def get_pdf_info(pdf_path, dataframes):
-    print(pdf_path)
+    # print(pdf_path)
     tables = tabula.read_pdf(pdf_path, pages='all', multiple_tables=True, lattice=True)
 
     target_header_for_crude = "Crude Oil Production during the month of"
@@ -63,9 +64,13 @@ def get_pdf_info(pdf_path, dataframes):
                 # Remove the last row
                 crude_target_table = crude_target_table.iloc[:-1]
 
-            # Select only the first and fifth columns for every rows
-            crude_target_table = crude_target_table.iloc[:, [0, 4]]
-            dataframes['crude_dataframe'].append(crude_target_table)
+            if crude_target_table.shape[1] == 11:
+                # Select only the first and fifth columns for every rows
+                crude_target_table = crude_target_table.iloc[:, [0, 4]]
+                # dataframes['crude_dataframes'].append(crude_target_table)
+                if len(crude_target_table) >= len(dataframes['crude_dataframes']):
+                    for index, key in enumerate(dataframes['crude_dataframes']):
+                        dataframes['crude_dataframes'][key].append(crude_target_table.iloc[[index]])
         if petroleum_target_table is not None:
             break_point = None
             for i, row in enumerate(petroleum_target_table.values):
@@ -79,9 +84,13 @@ def get_pdf_info(pdf_path, dataframes):
                 # Remove the last row
                 petroleum_target_table = petroleum_target_table.iloc[:-1]
 
-            # Select only the first and fifth columns for every rows
-            petroleum_target_table = petroleum_target_table.iloc[:, [0, 4]]
-            dataframes['petroleum_dataframe'].append(petroleum_target_table)
+            if petroleum_target_table.shape[1] == 11:
+                # Select only the first and fifth columns for every rows
+                petroleum_target_table = petroleum_target_table.iloc[:, [0, 4]]
+                # dataframes['petroleum_dataframes'].append(petroleum_target_table)
+                if len(petroleum_target_table) >= len(dataframes['petroleum_dataframes']):
+                    for index, key in enumerate(dataframes['petroleum_dataframes']):
+                        dataframes['petroleum_dataframes'][key].append(petroleum_target_table.iloc[[index]])
     else:
         print("Target header not found in any table.")
     return dataframes
