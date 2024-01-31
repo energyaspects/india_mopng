@@ -1,4 +1,4 @@
-from india_mopng_etl.india_mopng_scrapper.india_mopng_scrape_june2023_to_latest import Scrapper
+from india_mopng_etl.india_mopng_scrapper.india_mopng_scrape_june2021_to_latest import Scrapper
 
 
 def main():
