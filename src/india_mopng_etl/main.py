@@ -1,26 +1,4 @@
-import pandas as pd
-
-from helper_functions_ea import Logger
-from india_mopng_etl.metadata import metadata
-from india_mopng_etl.utils.base_classes import DataExtractor
-
-
-class __Class_Name__(DataExtractor):  # make sure you rename the class to your preference
-    """Make sure you implement all the methods required for your ETL"""
-
-    logger = Logger("__Class_Name__").logger  # Creates a logger
-
-    def __init__(self, ):
-        """Setting the metadata (if needed) and any other needed dependencies."""
-        self.metadata_df = metadata
-
-    def extract(self):
-        self.logger.info("Extracting data")
-        self.df = pd.DataFrame()
-
-    def transform(self, data):
-        self.logger.info("Transforming data")
-        self.df = self.df.merge(self.metadata_df)
+from india_mopng_etl.india_mopng_scrapper.india_mopng_scrape_june2023_to_latest import June2023ToLatest
 
 
 def main():
@@ -29,8 +7,11 @@ def main():
     Returns:
       None
     """
-    class_init = __Class_Name__()
-    class_init.etl()
+    try:
+        class_init = June2023ToLatest()
+        class_init.etl()
+    except Exception as ex:
+        raise RuntimeError(f"Scraper failed to process. Error was {ex}")
 
 
 if __name__ == "__main__":  # pragma: no cover

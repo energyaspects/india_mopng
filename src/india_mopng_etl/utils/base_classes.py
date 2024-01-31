@@ -10,8 +10,6 @@ class BaseVariables:
 class DataExtractor:
     base_variables = BaseVariables()
     shooju_handler = SHOOJU_HANDLER
-    sql_handler = SQL_HANDLER
-    selenium_handler = SELENIUM_HANDLER
 
     remove_others = None
     repdate = None
@@ -41,7 +39,7 @@ class DataExtractor:
             self.transform()
         except Exception as err:
             raise RuntimeError(f"Scraper failed at dataframe transformation. Error was {err}") from err
-        try:
-            self.load()
-        except Exception as err:
-            raise RuntimeError(f"Scraper failed at upload. Error was {err}") from err
+        # try:
+        #     self.load()
+        # except Exception as err:
+        #     raise RuntimeError(f"Scraper failed at upload. Error was {err}") from err
