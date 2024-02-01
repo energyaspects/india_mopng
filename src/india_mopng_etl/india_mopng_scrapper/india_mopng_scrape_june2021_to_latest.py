@@ -40,11 +40,13 @@ class Scrapper(DataExtractor):  # make sure you rename the class to your prefere
         for pdf_path in self.list_of_pdfs:
             self.dataframes = get_pdf_info(pdf_path, self.dataframes)
 
+        # Converting the last child elements into Dataframe
         for index, key in enumerate(self.dataframes['crude_dataframes']):
             crude_temp_variable = self.dataframes['crude_dataframes'][key]
             self.dataframes['crude_dataframes'][key] = pd.DataFrame()
             self.dataframes['crude_dataframes'][key] = pd.concat(crude_temp_variable, ignore_index=True)
 
+        # Converting the last child elements into Dataframe
         for index, key in enumerate(self.dataframes['petroleum_dataframes']):
             petroleum_temp_variable = self.dataframes['petroleum_dataframes'][key]
             self.dataframes['petroleum_dataframes'][key] = pd.DataFrame()

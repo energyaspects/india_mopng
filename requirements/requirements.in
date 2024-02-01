@@ -8,3 +8,4 @@ black
 invoke
 python-dotenv
 tabula-py
+jpype1
